@@ -1,0 +1,6 @@
+build/
+external/ffgl/
+.vs/
+*.user
+*.suo
+*.dll
