@@ -14,6 +14,7 @@ if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/external/ffgl/CMakeLists.txt")
 endif()
 
 add_subdirectory(external/ffgl ffgl-build EXCLUDE_FROM_ALL)
+find_package(GLEW REQUIRED)
 
 add_library(BR_Browser_Source MODULE
     src/BRBrowserSource.cpp
@@ -28,7 +29,7 @@ target_compile_definitions(BR_Browser_Source PRIVATE
     WINVER=0x0A00
 )
 target_compile_options(BR_Browser_Source PRIVATE /W4 /permissive- /EHsc)
-target_link_libraries(BR_Browser_Source PRIVATE ffgl::sdk opengl32)
+target_link_libraries(BR_Browser_Source PRIVATE ffgl::sdk GLEW::GLEW opengl32)
 
 set_target_properties(BR_Browser_Source PROPERTIES
     PREFIX ""
