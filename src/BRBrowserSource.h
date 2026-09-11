@@ -3,8 +3,8 @@
 #include <string>
 
 #include <ffgl/FFGLPluginSDK.h>
-#include <ffgl/FFGLQuad.h>
-#include <ffgl/FFGLShader.h>
+#include <ffglex/FFGLScreenQuad.h>
+#include <ffglex/FFGLShader.h>
 
 class BRBrowserSource final : public CFFGLPlugin
 {
@@ -23,7 +23,7 @@ public:
 
 private:
     CFFGLShader shader;
-    CFFGLQuad quad;
+    ffglex::FFGLScreenQuad quad;
     GLint accentLocation = -1;
     std::string browserUrl = "https://vdo.ninja/";
     std::string status = "Browser renderer: pending";
