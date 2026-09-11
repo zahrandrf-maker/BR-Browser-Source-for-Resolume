@@ -1,4 +1,5 @@
 #include "BRBrowserSource.h"
+#include <ffglex/FFGLScopedShaderBinding.h>
 
 #include <cstdio>
 
