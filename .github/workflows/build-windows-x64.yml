@@ -1,0 +1,29 @@
+name: Build Windows x64 DLL
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch Resolume FFGL SDK
+        shell: pwsh
+        run: git clone --depth 1 https://github.com/resolume/ffgl.git external/ffgl
+      - name: Install GLEW
+        shell: pwsh
+        run: vcpkg install glew:x64-windows-static-md
+      - name: Configure
+        shell: pwsh
+        run: cmake -S . -B build -A x64 -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-windows-static-md
+      - name: Build
+        shell: pwsh
+        run: cmake --build build --config Release
+      - name: Upload DLL
+        uses: actions/upload-artifact@v4
+        with:
+          name: BR-Browser-Source-Windows-x64
+          path: build/bin/Release/BR_Browser_Source_FFGL21.dll
