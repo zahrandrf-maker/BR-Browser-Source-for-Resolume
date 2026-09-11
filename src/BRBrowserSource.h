@@ -22,7 +22,7 @@ public:
     char* GetParameterDisplay(unsigned int index) override;
 
 private:
-    CFFGLShader shader;
+    ffglex::FFGLShader shader;
     ffglex::FFGLScreenQuad quad;
     GLint accentLocation = -1;
     std::string browserUrl = "https://vdo.ninja/";
