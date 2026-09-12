@@ -1,10 +1,13 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 #include <ffgl/FFGLPluginSDK.h>
 #include <ffglex/FFGLScreenQuad.h>
 #include <ffglex/FFGLShader.h>
+
+#include "BrowserRenderer.h"
 
 class BRBrowserSource final : public CFFGLPlugin
 {
@@ -24,12 +27,15 @@ public:
 private:
     ffglex::FFGLShader shader;
     ffglex::FFGLScreenQuad quad;
-    GLint accentLocation = -1;
+    GLint textureLocation = -1;
+    GLint frameAvailableLocation = -1;
+    GLuint browserTexture = 0;
     std::string browserUrl = "https://vdo.ninja/";
-    std::string status = "Browser renderer: pending";
+    std::string status = "WebView2 initializing";
     bool captureEnabled = false;
     bool showCursor = true;
     bool audioEnabled = true;
-    bool refreshRequested = false;
-    float fpsSelector = 0.0f;
+    float fpsSelector = 30.0f;
+    bool hasFrame = false;
+    BrowserRenderer renderer;
 };
