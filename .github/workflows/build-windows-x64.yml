@@ -13,6 +13,11 @@ jobs:
       - name: Fetch Resolume FFGL SDK
         shell: pwsh
         run: git clone --depth 1 https://github.com/resolume/ffgl.git external/ffgl
+      - name: Fetch Microsoft WebView2 SDK
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/1.0.2957.106 -OutFile webview2.zip
+          Expand-Archive webview2.zip -DestinationPath external/webview2/Microsoft.Web.WebView2.1.0.2957.106
       - name: Install GLEW
         shell: pwsh
         run: vcpkg install glew:x64-windows-static-md
